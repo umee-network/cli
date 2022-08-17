@@ -12,7 +12,7 @@ const (
 	commandInit              = "init"
 	commandKeys              = "keys"
 	commandAddGenesisAccount = "add-genesis-account"
-	commandGentx             = "gentx"
+	commandGentx             = "gentx-gravity"
 	commandCollectGentxs     = "collect-gentxs"
 	commandValidateGenesis   = "validate-genesis"
 	commandShowNodeID        = "show-node-id"
@@ -414,36 +414,25 @@ func (c ChainCmd) SDKVersion() cosmosver.Version {
 func (c ChainCmd) GentxCommand(
 	validatorName string,
 	selfDelegation string,
+	ethAddress string,
+	orchAddress string,
 	options ...GentxOption,
 ) step.Option {
 	command := []string{
 		commandGentx,
 	}
 
-	switch {
-	case c.sdkVersion.LT(cosmosver.StargateFortyVersion):
-		command = append(command,
-			validatorName,
-			optionAmount,
-			selfDelegation,
-		)
-	case c.sdkVersion.GTE(cosmosver.StargateFortyVersion):
-		command = append(command,
-			validatorName,
-			selfDelegation,
-		)
-	case c.sdkVersion.LTE(cosmosver.MaxLaunchpadVersion):
-		command = append(command,
-			optionName,
-			validatorName,
-			optionAmount,
-			selfDelegation,
-		)
+	// Use gravity gentx
+	command = append(command,
+		validatorName,
+		selfDelegation,
+		ethAddress,
+		orchAddress,
+	)
 
-		// Attach home client option
-		if c.cliHome != "" {
-			command = append(command, []string{optionHomeClient, c.cliHome}...)
-		}
+	// Attach home client option
+	if c.cliHome != "" {
+		command = append(command, []string{optionHomeClient, c.cliHome}...)
 	}
 
 	// Apply the options provided by the user

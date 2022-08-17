@@ -74,6 +74,8 @@ func (r Runner) Gentx(
 	ctx context.Context,
 	validatorName,
 	selfDelegation string,
+	ethAddress string,
+	orchAddress string,
 	options ...chaincmd.GentxOption,
 ) (gentxPath string, err error) {
 	b := &bytes.Buffer{}
@@ -82,7 +84,7 @@ func (r Runner) Gentx(
 		stdout: b,
 		stderr: b,
 		stdin:  os.Stdin,
-	}, r.chainCmd.GentxCommand(validatorName, selfDelegation, options...)); err != nil {
+	}, r.chainCmd.GentxCommand(validatorName, selfDelegation, ethAddress, orchAddress, options...)); err != nil {
 		return "", err
 	}
 

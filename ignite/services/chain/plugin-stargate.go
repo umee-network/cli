@@ -35,6 +35,8 @@ func (p *stargatePlugin) Gentx(ctx context.Context, runner chaincmdrunner.Runner
 		ctx,
 		v.Name,
 		v.StakingAmount,
+		v.EthAddress,
+		v.OrchAddress,
 		chaincmd.GentxWithMoniker(v.Moniker),
 		chaincmd.GentxWithCommissionRate(v.CommissionRate),
 		chaincmd.GentxWithCommissionMaxRate(v.CommissionMaxRate),
