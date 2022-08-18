@@ -171,6 +171,8 @@ func (c *Chain) InitAccounts(ctx context.Context, conf chainconfig.Config) error
 	_, err = c.IssueGentx(ctx, Validator{
 		Name:          conf.Validator.Name,
 		StakingAmount: conf.Validator.Staked,
+		EthAddress:    conf.Validator.EthAddress,
+		OrchAddress:   conf.Validator.OrchAddress,
 	})
 	return err
 }
@@ -216,6 +218,8 @@ type Validator struct {
 	Name                    string
 	Moniker                 string
 	StakingAmount           string
+	EthAddress              string
+	OrchAddress             string
 	CommissionRate          string
 	CommissionMaxRate       string
 	CommissionMaxChangeRate string

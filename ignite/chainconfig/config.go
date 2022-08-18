@@ -88,8 +88,10 @@ type Account struct {
 
 // Validator holds info related to validator settings.
 type Validator struct {
-	Name   string `yaml:"name"`
-	Staked string `yaml:"staked"`
+	Name        string `yaml:"name"`
+	Staked      string `yaml:"staked"`
+	EthAddress  string `yaml:"eth_address"`
+	OrchAddress string `yaml:"orch_address"`
 }
 
 // Build holds build configs.
