@@ -1,7 +1,4 @@
 # CODEOWNERS: https://help.github.com/articles/about-codeowners/
 
 # Primary repo maintainers
-*       @ilgooz @lubtd @jeronimoalbi @aljo242 @tbruyelle @fadeev
-
-# Docs
-*.md    @ilgooz @aljo242
+*       @umee-network/core-devs
